@@ -27,6 +27,21 @@ canvas {
     margin: auto;
 }
 
+.links-wrapper {
+    width: 100%;
+}
+.links {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.links.link {
+    width: 20%;
+}
+.links.space {
+    width: 10%;
+}
+
 .container-wrapper {
     width: 100%;
 }
