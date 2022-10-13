@@ -1,4 +1,4 @@
-var w = window.innerWidth;
+var w = document.documentElement.clientWidth-50;
 
 var font;
 var vehicles = [];
@@ -11,7 +11,7 @@ function preload() {
 function setup() {
     let text = 'Thomas Newbold';
     let tSize = 150;
-    let canvas = createCanvas(w,800);
+    let canvas = createCanvas(w,700);
 	canvas.parent('p5-canvas');
 	var points = fontItalic.textToPoints(text,w/2,450,tSize);
 	var bounds = fontItalic.textBounds(text,w/2,450,tSize);

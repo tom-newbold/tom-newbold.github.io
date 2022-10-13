@@ -29,17 +29,19 @@ canvas {
 
 .links-wrapper {
     width: 100%;
+    padding-top: 15px;
 }
 .links {
     display: inline-block;
     text-align: center;
     width: 100%;
+    padding: 0px;
 }
 .links.link {
-    width: 20%;
+    width: 6%;
 }
 .links.space {
-    width: 10%;
+    width: 20%;
 }
 
 .container-wrapper {
@@ -69,14 +71,6 @@ canvas {
     opacity: 0;
     transform: translate(0px, 50px);
 }
-/*
-@media screen and (min-width: 1600px) {
-    .card {
-        width: 300px;
-    }
-}
-*/
-/* 2*50 padding + wrapper where 30%=30+width */
 .card .header {
     height: 30px;
 }
