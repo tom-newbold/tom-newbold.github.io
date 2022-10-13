@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Thomas Newbold | Programmer | Projects</title>
+
+        <script src="libraries/p5.js"></script>
+        <script src="libraries/p5.dom.js"></script>
+        <!--script src="libraries/p5.sound.js"></script-->
+        <script src="name.js"></script>
+        <script src="vehicles.js"></script>
+
+        <link rel="stylesheet" href="style.css">
+        
+        <script src="cards.js"></script>
+    </head>
+    <body>
+        <div id="p5-canvas"></div>
+        <div style="padding:100px 50px 100px;">
+            <div style="height: 40px;">
+                <h2 style="float: left;">Python:</h2>
+                <h3 style="float: right;">See All ></h3>
+            </div>
+            <div class="container-wrapper card-wrapper" id="Python"><!--
+                --><div class="container content card" id="0"></div><!--
+                --><div class="container space"></div><!--
+                --><div class="container content card" id="1"></div><!--
+                --><div class="container space"></div><!--
+                --><div class="container content card" id="2"></div><!--
+            --></div>
+        </div>
+
+        <script src="animations.js"></script>
+        <script>
+            var out;
+            for(var i=0; i<cards.length; i++) {
+                if(cards[i].id != i) {
+                    break;
+                }
+                out = document.getElementById(i.toString());
+                //var ops = ['left', 'middle', 'right'];
+                const format = `
+                <div onclick="location.href='${cards[i].subpage}'">
+                    <div class="header">
+                        <h3 class="title">${cards[i].heading}</h3>
+                        <img class="image" src="${cards[i].thumbnail}">
+                    </div>
+                    <div class="body">
+                        ${cards[i].description}
+                    </div>
+                </div>`
+                out.innerHTML = format;
+            }
+        </script>
+    </body>
+</html>
