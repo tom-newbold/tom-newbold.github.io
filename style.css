@@ -32,6 +32,9 @@ h3 {
 canvas {
     margin: auto;
 }
+a {
+    color: inherit;
+}
 
 .links-wrapper {
     width: 100%;
