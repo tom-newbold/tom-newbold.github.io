@@ -9,6 +9,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
     background-color: black;
     color: white;
     font-family: 'RobotoCondensedItalic';
@@ -108,4 +109,24 @@ canvas {
 .card-enter {
     opacity: 1;
     transform: none;
+}
+
+.page-wrapper {
+    width: 100%;
+    padding: 30px;
+}
+.page {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+}
+.page.margin {
+    width: 25%;
+    vertical-align: top;
+    text-align: justify;
+    object-fit: contain;
+}
+.page.content {
+    width: 70%;
 }
