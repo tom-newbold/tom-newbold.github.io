@@ -11,10 +11,10 @@ function preload() {
 function setup() {
     let text = 'Thomas Newbold';
     let tSize = 150;
-    let canvas = createCanvas(w,1000);
+    let canvas = createCanvas(w,800);
 	canvas.parent('p5-canvas');
-	var points = fontItalic.textToPoints(text,w/2,600,tSize);
-	var bounds = fontItalic.textBounds(text,w/2,600,tSize);
+	var points = fontItalic.textToPoints(text,w/2,450,tSize);
+	var bounds = fontItalic.textBounds(text,w/2,450,tSize);
 	for(p of points) {
 		var vehicle = new Vehicle(p.x-bounds.w/2,p.y-bounds.h/2);
 		vehicles.push(vehicle);
@@ -35,5 +35,5 @@ function draw() {
 	noStroke();
 	fill(255,0,0,200);
 	textFont(fontThinItalic);
-	text('P R O G R A M M E R', w/2, 570);
+	text('P R O G R A M M E R', w/2, 420);
 }

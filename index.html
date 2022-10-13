@@ -4,7 +4,6 @@
 
         <script src="libraries/p5.js"></script>
         <script src="libraries/p5.dom.js"></script>
-        <!--script src="libraries/p5.sound.js"></script-->
         <script src="name.js"></script>
         <script src="vehicles.js"></script>
 
@@ -13,7 +12,7 @@
         <script src="cards.js"></script>
     </head>
     <body>
-        <div class="links-wrapper" id="links">
+        <div class="links-wrapper" id="links"><!-- link bar at top -->
             <div class="links space"></div>
             <div class="links link">
                 <a href="https://www.linkedin.com/in/thomasnewbold-/">
@@ -31,19 +30,19 @@
             </div>
             <div class="links space"></div>
         </div>
-        <div id="p5-canvas"></div>
+        <div id="p5-canvas" style="height: 600px;"><!-- p5 sketch: name --></div>
         <div style="padding:100px 50px 100px;">
             <div style="height: 40px;">
                 <h2 style="float: left;">Python:</h2>
                 <h3 style="float: right;">See All ></h3>
             </div>
-            <div class="container-wrapper card-wrapper" id="Python"><!--
-                --><div class="container content card" id="0"></div><!--
-                --><div class="container space"></div><!--
-                --><div class="container content card" id="1"></div><!--
-                --><div class="container space"></div><!--
-                --><div class="container content card" id="2"></div><!--
-            --></div>
+            <div class="container-wrapper card-wrapper" id="Python"><!-- python project cards -->
+                <div class="container content card" id="0"></div>
+                <div class="container space"></div>
+                <div class="container content card" id="1"></div>
+                <div class="container space"></div>
+                <div class="container content card" id="2"></div>
+            </div>
         </div>
 
         <script src="animations.js"></script>
