@@ -2,22 +2,22 @@ var cards = [
     {
         "id": 0,
         "heading": "Maze Generator",
-        "description": "Test description. This text should appear below the heading and also wrap around the image.",
+        "description": "Maze generation application written in Python. GCSE NEA project.",
         "thumbnail": "thumbnails/MazeGenerator_Thumbnail.png",
         "subpage":"subpages/python_mazeGenerator.html"
     },
     {
         "id": 1,
         "heading": "Covid Dashboard",
-        "description": "Another Test description as I can't be bothered to fill in the content yet.",
-        "thumbnail": "thumbnails/MazeGenerator_Thumbnail.png",
+        "description": "Flask-powered web application displaying COVID-19 data. ECM1400 coursework project.",
+        "thumbnail": "thumbnails/nhs_logo.png",
         "subpage":"subpages/python_covidDashboard.html"
     },
     {
         "id": 2,
         "heading": "Othelo",
-        "description": "You get the picture. I'll write these later.",
-        "thumbnail": "thumbnails/MazeGenerator_Thumbnail.png",
+        "description": "Python implementation of both single and multi-player Othello. Tkinter interface.",
+        "thumbnail": "thumbnails/Othello_Thumbnail.png",
         "subpage":"subpages/python_othello.html"
     }
 ]
