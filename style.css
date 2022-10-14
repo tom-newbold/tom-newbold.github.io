@@ -36,6 +36,7 @@ a {
     color: inherit;
 }
 
+/* links bar */
 .links-wrapper {
     width: 100%;
     padding-top: 15px;
@@ -53,6 +54,30 @@ a {
     width: 20%;
 }
 
+/* underline animation */
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: white;
+}
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* card container */
 .container-wrapper {
     width: 100%;
 }
@@ -69,6 +94,7 @@ a {
     width: 5%;
 }
 
+/* card properties and transition */
 .card {
     width: 240px;
     height: 80px;
@@ -116,12 +142,12 @@ a {
         transition-delay: 200ms;
     }
 }
-
 .card-enter {
     opacity: 1;
     transform: none;
 }
 
+/* subpage margin and content classes */
 .page-wrapper {
     width: 100%;
     padding: 30px;
