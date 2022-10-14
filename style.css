@@ -52,6 +52,9 @@ a {
 }
 .links.space {
     width: 20%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-25%);
 }
 
 /* underline animation */
@@ -88,10 +91,10 @@ a {
     padding-right: 50px;
 }
 .continer.content {
-    width: 30%;
+    width: 20%;
 }
 .container.space {
-    width: 5%;
+    width: 10%;
 }
 
 /* card properties and transition */
@@ -150,7 +153,8 @@ a {
 /* subpage margin and content classes */
 .page-wrapper {
     width: 100%;
-    padding: 30px;
+    padding: 25px;
+    padding-top: 20px;
 }
 .page {
     display: inline-block;
