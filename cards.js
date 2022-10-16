@@ -40,5 +40,6 @@ var cards = [
         "description": "A collection of creative coding exercises.",
         "thumbnail": "thumbnails/Squares_Thumbnail.png",
         "subpage":"subpages/javascript_generativeArt.html"
-    }
+    },
+    [0,1,2,3,4,5]
 ]
