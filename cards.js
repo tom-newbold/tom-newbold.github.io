@@ -24,21 +24,21 @@ var cards = [
         "id": 3,
         "heading": "Pendulums",
         "description": "Various implementations of stacked pendulums.",
-        "thumbnail": "thumbnails/Othello_Thumbnail.png",
-        "subpage":"subpages/javascript_.html"
+        "thumbnail": "thumbnails/SpringPendulum_Thumbnail.png",
+        "subpage":"subpages/javascript_pendulums.html"
     },
     {
         "id": 4,
         "heading": "Fractal Clock",
         "description": "A time-dependant recursive line fractal.",
-        "thumbnail": "thumbnails/Othello_Thumbnail.png",
-        "subpage":"subpages/javascript_.html"
+        "thumbnail": "thumbnails/Fractal_Thumbnail.png",
+        "subpage":"subpages/javascript_fractal.html"
     },
     {
         "id": 5,
         "heading": "Generative Art",
         "description": "A collection of creative coding exercises.",
-        "thumbnail": "thumbnails/Othello_Thumbnail.png",
-        "subpage":"subpages/javascript_.html"
+        "thumbnail": "thumbnails/Squares_Thumbnail.png",
+        "subpage":"subpages/javascript_generativeArt.html"
     }
 ]
