@@ -3,7 +3,7 @@ var SECONDARY;
 const MAX_DEPTH = 8;
 const SUB_THRESHOLD = 0.8;
 const SHADE_THRESHOLD = 0.25;
-var PARENT;
+var PARENT_S;
 
 class Square {
 	constructor(depth, x, y, size, sketch) {
@@ -71,9 +71,9 @@ const s_quad = (sketch) => {
 
 	sketch.draw = () => {
 		sketch.background(SECONDARY);
-		PARENT = new Square(0,20,20,360,sketch);
-		PARENT.subdivide();
-		PARENT.draw();
+		PARENT_S = new Square(0,20,20,360,sketch);
+		PARENT_S.subdivide();
+		PARENT_S.draw();
 	}
 }
 

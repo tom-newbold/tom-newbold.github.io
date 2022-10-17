@@ -177,3 +177,8 @@ a {
 .page.content {
     width: 65%;
 }
+.page.content .row {
+    display: inline-block;
+    padding: 0px;
+    width: 85%;
+}
