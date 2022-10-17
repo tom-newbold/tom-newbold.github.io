@@ -26,7 +26,14 @@ var cards = [
         "description": "Python implementations of fractals, using Turtle.",
         "thumbnail":"thumbnails/PythonFractal_Thumbnail.jpg",
         "subpage":"subpages/python_fractal.html"
-    },{},{},{},
+    },
+    {
+        "id": 4,
+        "heading": "Double Pendulum",
+        "description": "Python implementations of double pendulum systems. Tkinter.",
+        "thumbnail":"thumbnails/DoublePendulum_Thumbnail.png",
+        "subpage":"subpages/python_pendulums.html"
+    },{},{},
     {
         "id": 7,
         "heading": "Pendulums",
@@ -50,7 +57,7 @@ var cards = [
     },
     {
         "main": [0,1,2,7,8,9],
-        "python": [0,1,2,3],
+        "python": [0,1,2,3,4],
         "javascript": [7,8,9]
     }
 ]
