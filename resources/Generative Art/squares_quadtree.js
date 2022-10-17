@@ -61,8 +61,10 @@ const s_quad = (sketch) => {
 	}
 
 	sketch.setup = () => {
-		PRIMARY = sketch.color(34,35,35);
-		SECONDARY = sketch.color(240,246,240);
+		//PRIMARY = sketch.color(34,35,35);
+		//SECONDARY = sketch.color(240,246,240);
+		PRIMARY = sketch.color(255);
+		SECONDARY = sketch.color(0);
 		var canvas = sketch.createCanvas(400,400);
 		canvas.mouseClicked(sketch.update);
 		sketch.stroke(PRIMARY);
