@@ -1,18 +1,19 @@
 var PRIMARY;
 var SECONDARY;
-
-var MAX_DEPTH;
-var SUB_THRESHOLD;
-var SHADE_THRESHOLD;
+const MAX_DEPTH = 8;
+const SUB_THRESHOLD = 0.8;
+const SHADE_THRESHOLD = 0.25;
+var PARENT;
 
 class Square {
-	constructor(depth, x, y, size) {
+	constructor(depth, x, y, size, sketch) {
+		this.s = sketch;
 		this.depth = depth;
 		this.x = x;
 		this.y = y;
 		this.size = size;
 		this.children = [];
-		if(random(0,1) < SHADE_THRESHOLD){
+		if(this.s.random(0,1) < SHADE_THRESHOLD){
 			this.shaded = true;
 		} else {
 			this.shaded = false;
@@ -26,23 +27,22 @@ class Square {
 			}
 		} else {
 			if(this.shaded){
-				fill(PRIMARY);
+				this.s.fill(PRIMARY);
 			} else {
-				noFill();
+				this.s.noFill();
 			}
-			stroke(PRIMARY);
-			rect(this.x,this.y,this.size,this.size);
-			//print(this.x,this.y,this.size);
+			this.s.stroke(PRIMARY);
+			this.s.rect(this.x,this.y,this.size,this.size);
 		}
 	}
 
 	subdivide() {
 		if(this.depth <= MAX_DEPTH){
-			if(random(0,1) < pow(SUB_THRESHOLD,this.depth)){
-				append(this.children, new Square(this.depth+1,this.x,this.y,this.size/2));
-				append(this.children, new Square(this.depth+1,this.x+this.size/2,this.y,this.size/2));
-				append(this.children, new Square(this.depth+1,this.x,this.y+this.size/2,this.size/2));
-				append(this.children, new Square(this.depth+1,this.x+this.size/2,this.y+this.size/2,this.size/2));
+			if(this.s.random(0,1) < this.s.pow(SUB_THRESHOLD,this.depth)){
+				this.s.append(this.children, new Square(this.depth+1,this.x,this.y,this.size/2,this.s));
+				this.s.append(this.children, new Square(this.depth+1,this.x+this.size/2,this.y,this.size/2,this.s));
+				this.s.append(this.children, new Square(this.depth+1,this.x,this.y+this.size/2,this.size/2,this.s));
+				this.s.append(this.children, new Square(this.depth+1,this.x+this.size/2,this.y+this.size/2,this.size/2,this.s));
 				if(this.depth != MAX_DEPTH){
 					for(var i=0; i<this.children.length; i++){
 						this.children[i].subdivide();
@@ -53,31 +53,28 @@ class Square {
 	}
 }
 
-var PARENT;
+// instance
 
-function setup() {
-	PRIMARY = color(34,35,35);
-	SECONDARY = color(240,246,240);
-	MAX_DEPTH = 8;
-	SUB_THRESHOLD = 0.8;
-	SHADE_THRESHOLD = 0.25;
+const s_quad = (sketch) => {
+	sketch.update = () => {
+		sketch.redraw();
+	}
 
-	createCanvas(1540,800);
-	stroke(PRIMARY);
-	noLoop();
-}
+	sketch.setup = () => {
+		PRIMARY = sketch.color(34,35,35);
+		SECONDARY = sketch.color(240,246,240);
+		var canvas = sketch.createCanvas(400,400);
+		canvas.mouseClicked(sketch.update);
+		sketch.stroke(PRIMARY);
+		sketch.noLoop();
+	}
 
-function draw(){
-	background(SECONDARY);
-	PARENT = new Square(0,470,100,600);
-	PARENT.subdivide();
-	PARENT.draw();
-	//rect(PARENT.x,PARENT.y,PARENT.size,PARENT.size);
-	print('drawn');
-}
-
-function keyPressed(){
-	if(key == ' '){
-		redraw();
+	sketch.draw = () => {
+		sketch.background(SECONDARY);
+		PARENT = new Square(0,20,20,360,sketch);
+		PARENT.subdivide();
+		PARENT.draw();
 	}
 }
+
+p5_quad = new p5(s_quad,'squares-quadtree');
