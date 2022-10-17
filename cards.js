@@ -19,7 +19,14 @@ var cards = [
         "description": "Python implementation of both single and multi-player Othello. Tkinter interface.",
         "thumbnail": "thumbnails/Othello_Thumbnail.png",
         "subpage":"subpages/python_othello.html"
-    },{},{},{},{},
+    },
+    {
+        "id": 3,
+        "heading": "Fractals",
+        "description": "Python implementations of fractals, using Turtle.",
+        "thumbnail":"thumbnails/PythonFractal_Thumbnail.jpg",
+        "subpage":"subpages/python_fractal.html"
+    },{},{},{},
     {
         "id": 7,
         "heading": "Pendulums",
@@ -43,7 +50,7 @@ var cards = [
     },
     {
         "main": [0,1,2,7,8,9],
-        "python": [0,1,2],
+        "python": [0,1,2,3],
         "javascript": [7,8,9]
     }
 ]
