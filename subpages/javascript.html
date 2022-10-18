@@ -48,7 +48,7 @@
                     return;
                 }
                 const format = `
-                <div class="container content card" style="opacity: 1;">
+                <div class="container content card">
                     <div onclick="location.href='../${cards[i].subpage}'">
                         <div class="header">
                             <h3 class="title">${cards[i].heading}</h3>
@@ -63,5 +63,6 @@
             });
             out.innerHTML = html;
         </script>
+        <script src="../animations.js"></script>
     </body>
 </html>
