@@ -77,7 +77,6 @@ var cards = [
         "subpage":"subpages/javascript_generativeArt.html"
     },
     {
-        "main": [0,1,2,8,9,10],
         "python": [0,1,2,3,4,5],
         "javascript": [8,9,10]
     }
