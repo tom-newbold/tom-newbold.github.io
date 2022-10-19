@@ -44,8 +44,8 @@ var cards = [
     {
         "id": 6,
         "heading": "Text Adventures",
-        "description": "A couple of short text adventures, written in Python.",
-        "thumbnail":"",
+        "description": "A few of short text adventures, written in Python.",
+        "thumbnail":"thumbnails/TextAdventure_Thumbnail.ico",
         "subpage":"subpages/python_textAdventures.html"
     },
     {
@@ -77,7 +77,7 @@ var cards = [
         "subpage":"subpages/javascript_generativeArt.html"
     },
     {
-        "python": [0,1,2,3,4,5],
+        "python": [0,1,2,3,4,5,6],
         "javascript": [8,9,10]
     }
 ]
