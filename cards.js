@@ -52,7 +52,7 @@ var cards = [
         "id": 7,
         "heading": "Game of Life",
         "description": "Basic implementation of Conway's game of life.",
-        "thumbnail": "",
+        "thumbnail": "thumbnail/GameOfLife_Thumbnail",
         "subpage": "subpage/python_gameOfLife.html"
     },
     {
@@ -77,7 +77,7 @@ var cards = [
         "subpage":"subpages/javascript_generativeArt.html"
     },
     {
-        "python": [0,1,2,3,4,5,6],
+        "python": [0,1,2,3,4,5,6,7],
         "javascript": [8,9,10]
     }
 ]
