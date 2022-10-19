@@ -38,13 +38,7 @@
                 <a href="subpages/python.html">
                     <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3></a>
             </div>
-            <div class="container-wrapper card-wrapper" id="Python">
-                <!--div class="container content card" id="0"></div>
-                <div class="container space"></div>
-                <div class="container content card" id="1"></div>
-                <div class="container space"></div>
-                <div class="container content card" id="2"></div-->
-            </div>
+            <div class="container-wrapper card-wrapper" id="Python"></div>
         </div>
 
         <div style="padding:50px 50px 0px;"><!-- javascript project cards-->
@@ -53,38 +47,11 @@
                 <a href="subpages/javascript.html">
                     <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3></a>
             </div>
-            <div class="container-wrapper card-wrapper" id="Javascript">
-                <!--div class="container content card" id="8"></div>
-                <div class="container space"></div>
-                <div class="container content card" id="9"></div>
-                <div class="container space"></div>
-                <div class="container content card" id="10"></div-->
-            </div>
+            <div class="container-wrapper card-wrapper" id="Javascript"></div>
         </div>
 
         <div style="padding-bottom: 100px;"></div>
 
-        
-        <!--script>
-            var out;
-            cards[cards.length-1].main.forEach(i => {
-                if(cards[i].id != i) {
-                    return;
-                }
-                out = document.getElementById(i.toString());
-                const format = `
-                <div onclick="location.href='${cards[i].subpage}'">
-                    <div class="header">
-                        <h3 class="title">${cards[i].heading}</h3>
-                        <img class="image" src="${cards[i].thumbnail}">
-                    </div>
-                    <div class="body">
-                        ${cards[i].description}
-                    </div>
-                </div>`
-                out.innerHTML = format;
-            });
-        </script-->
         <script>
             function loadCards(id, array) {
                 var out = document.getElementById(id);
