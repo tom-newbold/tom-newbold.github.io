@@ -1,48 +1,52 @@
 <html>
-    <head>
-        <title>Thomas Newbold | Programmer | JavaScript ~ Fractal Clock</title>
-        <link rel="stylesheet" href="../style.css">
 
-        <script src="../libraries/p5.js"></script>
-        <script src="../libraries/p5.dom.js"></script>
+<head>
+    <title>JavaScript ~ Fractal Clock | Thomas Newbold</title>
+    <link rel="stylesheet" href="../style.css">
 
-        <script src="../resources/fractal.js"></script>
-    </head>
-    <body>
-        <div class="links-wrapper" id="links"><!-- link bar at top -->
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://www.linkedin.com/in/thomasnewbold-/">
-                    <img src="../thumbnails/LinkedIn_Logo.png" width="30" height="30"></a>
+    <script src="../libraries/p5.js"></script>
+    <script src="../libraries/p5.dom.js"></script>
+
+    <script src="../resources/fractal.js"></script>
+</head>
+
+<body>
+    <div class="links-wrapper" id="links">
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://www.linkedin.com/in/thomasnewbold-/">
+                <img src="../thumbnails/LinkedIn_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://github.com/tom-newbold/">
+                <img src="../thumbnails/GitHub_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://brownseededbread.itch.io/">
+                <img src="../thumbnails/ItchIo_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space">
+            <a href="../index.html">
+                <h3 class="hover-underline-animation">&lt; Home</h3>
+            </a>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="page margin">
+            <div>
+                <h1>Time Fractal in p5.js</h1>
             </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://github.com/tom-newbold/">
-                    <img src="../thumbnails/GitHub_Logo.png" width="30" height="30"></a>
-            </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://brownseededbread.itch.io/">
-                    <img src="../thumbnails/ItchIo_Logo.png" width="30" height="30"></a>
-            </div>
-            <div class="links space">
-                <a href="../index.html">
-                    <h3 class="hover-underline-animation">&lt; Home</h3></a>
+            <div>
+                A recursively drawn, time-dependant fractal.
+                The angle of both "hands" is varied to produce sweeping lines and intricate shapes.
+                Press on the canvas to show/hide the arms.
             </div>
         </div>
-        <div class="page-wrapper">
-            <div class="page margin">
-                <div>
-                    <h1>Time Fractal in p5.js</h1>
-                </div>
-                <div>
-                    A recursively drawn, time-dependant fractal.
-                    The angle of both "hands" is varied to produce sweeping lines and intricate shapes.
-                    Press on the canvas to show/hide the arms.
-                </div>
-            </div>
-            <div class="page content">
-                <div id="fractal-clock"></div>
+        <div class="page content">
+            <div id="fractal-clock"></div>
         </div>
-    </body>
+</body>
+
 </html>

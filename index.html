@@ -1,67 +1,77 @@
 <html>
-    <head>
-        <title>Thomas Newbold | Programmer | Projects</title>
 
-        <script src="libraries/p5.js"></script>
-        <script src="libraries/p5.dom.js"></script>
-        <script src="name.js"></script>
-        <script src="vehicles.js"></script>
+<head>
+    <title>Thomas Newbold | Programmer | Projects</title>
 
-        <link rel="stylesheet" href="style.css">
-        
-        <script src="cards.js"></script>
-    </head>
-    <body>
-        <div class="links-wrapper" id="links"><!-- link bar at top -->
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://www.linkedin.com/in/thomasnewbold-/">
-                    <img src="thumbnails/LinkedIn_Logo.png" width="50" height="50"></a>
-            </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://github.com/tom-newbold/">
-                    <img src="thumbnails/GitHub_Logo.png" width="50" height="50"></a>
-            </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://brownseededbread.itch.io/">
-                    <img src="thumbnails/ItchIo_Logo.png" width="50" height="50"></a>
-            </div>
-            <div class="links space"></div>
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.dom.js"></script>
+    <script src="name.js"></script>
+    <script src="vehicles.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="cards.js"></script>
+</head>
+
+<body>
+    <div class="links-wrapper" id="links">
+        <!-- link bar at top -->
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://www.linkedin.com/in/thomasnewbold-/">
+                <img src="thumbnails/LinkedIn_Logo.png" width="50" height="50"></a>
         </div>
-        <div id="p5-canvas" style="width: 100%;"><!-- p5 sketch: name --></div>
-
-        <div style="padding:100px 50px 0px;"><!-- python project cards -->
-            <div style="height: 40px; padding-bottom: 10px;">
-                <h2 style="float: left;">Python:</h2>
-                <a href="subpages/python.html">
-                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3></a>
-            </div>
-            <div class="container-wrapper card-wrapper" id="Python"></div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://github.com/tom-newbold/">
+                <img src="thumbnails/GitHub_Logo.png" width="50" height="50"></a>
         </div>
-
-        <div style="padding:50px 50px 0px;"><!-- javascript project cards-->
-            <div style="height: 40px; padding-bottom: 10px;">
-                <h2 style="float: left;">JavaScript (using p5.js libraries):</h2>
-                <a href="subpages/javascript.html">
-                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3></a>
-            </div>
-            <div class="container-wrapper card-wrapper" id="Javascript"></div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://brownseededbread.itch.io/">
+                <img src="thumbnails/ItchIo_Logo.png" width="50" height="50"></a>
         </div>
+        <div class="links space"></div>
+    </div>
+    <div id="p5-canvas" style="width: 100%;">
+        <!-- p5 sketch: name -->
+    </div>
 
-        <div style="padding-bottom: 100px;"></div>
+    <div style="padding:100px 50px 0px;">
+        <!-- python project cards -->
+        <div style="height: 40px; padding-bottom: 10px;">
+            <h2 style="float: left;">Python:</h2>
+            <a href="subpages/python.html">
+                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+            </a>
+        </div>
+        <div class="container-wrapper card-wrapper" id="Python"></div>
+    </div>
 
-        <script>
-            function loadCards(id, array) {
-                var out = document.getElementById(id);
-                var html = "";
-                var format;
-                array.slice(0,3).forEach(i => {
-                    if(cards[i].id != i) {
-                        return;
-                    }
-                    format = `
+    <div style="padding:50px 50px 0px;">
+        <!-- javascript project cards-->
+        <div style="height: 40px; padding-bottom: 10px;">
+            <h2 style="float: left;">JavaScript (using p5.js libraries):</h2>
+            <a href="subpages/javascript.html">
+                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+            </a>
+        </div>
+        <div class="container-wrapper card-wrapper" id="Javascript"></div>
+    </div>
+
+    <div style="padding-bottom: 100px;"></div>
+
+    <script>
+        // Loads project titles/descriptions/thumbnails into cards
+        function loadCards(id, array) {
+            var out = document.getElementById(id);
+            var html = "";
+            var format;
+            array.slice(0, 3).forEach(i => {
+                if (cards[i].id != i) {
+                    return;
+                }
+                format = `
                     <div class="container content card">
                         <div onclick="location.href='${cards[i].subpage}'">
                             <div class="header">
@@ -73,16 +83,17 @@
                             </div>
                         </div>
                     </div>`
-                    if(i != 2) {
-                        format = format + '<div class="container space"></div>';
-                    }
-                    html = html + format;
-                });
-                out.innerHTML = html;
-            }
-            loadCards("Python", cards[cards.length-1].python);
-            loadCards("Javascript", cards[cards.length-1].javascript);
-        </script>
-        <script src="animations.js"></script>
-    </body>
+                if (i != 2) {
+                    format = format + '<div class="container space"></div>';
+                }
+                html = html + format;
+            });
+            out.innerHTML = html;
+        }
+        loadCards("Python", cards[cards.length - 1].python);
+        loadCards("Javascript", cards[cards.length - 1].javascript);
+    </script>
+    <script src="animations.js"></script>
+</body>
+
 </html>

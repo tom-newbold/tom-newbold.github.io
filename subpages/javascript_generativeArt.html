@@ -1,59 +1,65 @@
 <html>
-    <head>
-        <title>Thomas Newbold | Programmer | JavaScript ~ Generative Art</title>
-        <link rel="stylesheet" href="../style.css">
 
-        <script src="../libraries/p5.js"></script>
-        <script src="../libraries/p5.dom.js"></script>
+<head>
+    <title>JavaScript ~ Generative Art | Thomas Newbold</title>
+    <link rel="stylesheet" href="../style.css">
 
-        <script src="../resources/Generative Art/goto10.js"></script>
-        <script src="../resources/Generative Art/squares_quadtree.js"></script>
-        <script src="../resources/Generative Art/triangles.js"></script>
-        <script src="../resources/Generative Art/squares.js"></script>
-    </head>
-    <body>
-        <div class="links-wrapper" id="links"><!-- link bar at top -->
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://www.linkedin.com/in/thomasnewbold-/">
-                    <img src="../thumbnails/LinkedIn_Logo.png" width="30" height="30"></a>
+    <script src="../libraries/p5.js"></script>
+    <script src="../libraries/p5.dom.js"></script>
+
+    <script src="../resources/Generative Art/goto10.js"></script>
+    <script src="../resources/Generative Art/squares_quadtree.js"></script>
+    <script src="../resources/Generative Art/triangles.js"></script>
+    <script src="../resources/Generative Art/squares.js"></script>
+</head>
+
+<body>
+    <div class="links-wrapper" id="links">
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://www.linkedin.com/in/thomasnewbold-/">
+                <img src="../thumbnails/LinkedIn_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://github.com/tom-newbold/">
+                <img src="../thumbnails/GitHub_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://brownseededbread.itch.io/">
+                <img src="../thumbnails/ItchIo_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space">
+            <a href="../index.html">
+                <h3 class="hover-underline-animation">&lt; Home</h3>
+            </a>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="page margin">
+            <div>
+                <h1>Generative Art in p5.js</h1>
             </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://github.com/tom-newbold/">
-                    <img src="../thumbnails/GitHub_Logo.png" width="30" height="30"></a>
+            <div>
+                Presented here are a range of exercises in "Creative Coding" - using simple rules and loops to create
+                random shapes.
+                The nuance with these programs is finding a way to induce randomness which does not detract from the
+                overall theme of the piece.
+                Included demos: Goto10 (below); Squares and Triangles (click to regenerate);
             </div>
-            <div class="links space"></div>
-            <div class="links link">
-                <a href="https://brownseededbread.itch.io/">
-                    <img src="../thumbnails/ItchIo_Logo.png" width="30" height="30"></a>
+            <div id="goto-10" style="padding-top: 20px;"></div>
+        </div>
+        <div class="page content">
+            <div class="row">
+                <div id="squares-quadtree" style="float: left;"></div>
+                <div id="triangles" style="float: right;"></div>
             </div>
-            <div class="links space">
-                <a href="../index.html">
-                    <h3 class="hover-underline-animation">&lt; Home</h3></a>
+            <div class="row">
+                <div id="squares" style="float: left;"></div>
             </div>
         </div>
-        <div class="page-wrapper">
-            <div class="page margin">
-                <div>
-                    <h1>Generative Art in p5.js</h1>
-                </div>
-                <div>
-                    Presented here are a range of exercises in "Creative Coding" - using simple rules and loops to create random shapes.
-                    The nuance with these programs is finding a way to induce randomness which does not detract from the overall theme of the piece.
-                    Included demos: Goto10 (below); Squares and Triangles (click to regenerate);
-                </div>
-                <div id="goto-10" style="padding-top: 20px;"></div>
-            </div>
-            <div class="page content">
-                <div class="row">
-                    <div id="squares-quadtree" style="float: left;"></div>
-                    <div id="triangles" style="float: right;"></div>
-                </div>
-                <div class="row">
-                    <div id="squares" style="float: left;"></div>
-                </div>
-            </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
