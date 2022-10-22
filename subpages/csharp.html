@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>C# (Unity) Projects | Thomas Newbold</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../cards.js"></script>
+</head>
+
+<body>
+    <div class="links-wrapper" id="links">
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://www.linkedin.com/in/thomasnewbold-/">
+                <img src="../thumbnails/LinkedIn_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://github.com/tom-newbold/">
+                <img src="../thumbnails/GitHub_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space"></div>
+        <div class="links link">
+            <a href="https://brownseededbread.itch.io/">
+                <img src="../thumbnails/ItchIo_Logo.png" width="30" height="30"></a>
+        </div>
+        <div class="links space">
+            <a href="../index.html">
+                <h3 class="hover-underline-animation">&lt; Home</h3>
+            </a>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="page margin">
+            <div>
+                <h1>C# (Unity)</h1>
+            </div>
+            <div>
+                A list of all of my significant Unity Projects.
+            </div>
+        </div>
+        <div class="page content container-wrapper card-wrapper" id="C-Sharp"></div>
+    </div>
+    </div>
+
+    <script>
+        var out = document.getElementById("C-Sharp");
+        var html = "";
+        cards[cards.length - 1].javascript.forEach(i => {
+            if (cards[i].id != i) {
+                return;
+            }
+            const format = `
+                <div class="container content card">
+                    <div onclick="location.href='../${cards[i].subpage}'">
+                        <div class="header">
+                            <h3 class="title">${cards[i].heading}</h3>
+                            <img class="image" src="../${cards[i].thumbnail}">
+                        </div>
+                        <div class="body">
+                            ${cards[i].description}
+                        </div>
+                    </div>
+                </div>`
+            html = html + format;
+        });
+        out.innerHTML = html;
+    </script>
+    <script src="../animations.js"></script>
+</body>
+
+</html>

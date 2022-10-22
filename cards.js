@@ -77,7 +77,15 @@ var cards = [
         "subpage": "subpages/javascript_generativeArt.html"
     },
     {
+        "id": 11,
+        "heading": "Chilly Quest",
+        "description": "A short platformer written in Unity.",
+        "thumbnail": "thumbnails/TextAdventure_Thumbnail.ico",
+        "subpage": "subpages/csharp_chillyQuest.html"
+    },
+    {
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
-        "javascript": [8, 9, 10]
+        "javascript": [8, 9, 10],
+        "csharp": [11]
     }
 ]
