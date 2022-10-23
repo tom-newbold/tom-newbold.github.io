@@ -4,7 +4,7 @@ var classes = ['no-delay','one-delay','two-delay'];
 
 const callback = (entries) => {
     entries.forEach(entry => {
-        var card_id = parseInt(entry.target.id) % 3;
+        var card_id = parseInt(entry.target.id);
         if (entry.isIntersecting) {
             entry.target.classList.add('card-enter');
             entry.target.classList.add(classes[card_id]);

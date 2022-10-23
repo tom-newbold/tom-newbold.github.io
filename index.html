@@ -79,26 +79,28 @@
             var out = document.getElementById(id);
             var html = "";
             var format;
-            array.slice(0, 3).forEach(i => {
-                if (cards[i].id != i) {
+            var i = 0;
+            array.slice(0, 3).forEach(id => {
+                if (cards[id].id != id) {
                     return;
                 }
                 format = `
-                    <div class="container content card">
-                        <div onclick="location.href='${cards[i].subpage}'">
-                            <div class="header">
-                                <h3 class="title">${cards[i].heading}</h3>
-                                <img class="image" src="${cards[i].thumbnail}">
-                            </div>
-                            <div class="body">
-                                ${cards[i].description}
-                            </div>
+                <div class="container content card" id="${i}">
+                    <div onclick="location.href='${cards[id].subpage}'">
+                        <div class="header">
+                            <h3 class="title">${cards[id].heading}</h3>
+                            <img class="image" src="${cards[id].thumbnail}">
                         </div>
-                    </div>`
-                if (i != 2) {
+                        <div class="body">
+                            ${cards[id].description}
+                        </div>
+                    </div>
+                </div>`
+                if (id != 2) {
                     format = format + '<div class="container space"></div>';
                 }
                 html = html + format;
+                i++;
             });
             out.innerHTML = html;
         }
