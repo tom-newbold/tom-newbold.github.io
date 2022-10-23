@@ -84,6 +84,13 @@ var cards = [
         "subpage": "subpages/csharp_chillyQuest.html"
     },
     {
+        "id": 12,
+        "heading": "FPS Demo",
+        "description": "First Person demo with physics objects and post-procesing, in Unity.",
+        "thumbnail": "thumbnails/FPS_Demo_Thumbnail.png",
+        "subpage": "subpages/csharp_fpsDemo.html"
+    },
+    {
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10],
         "csharp": [11]
