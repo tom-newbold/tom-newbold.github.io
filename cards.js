@@ -107,13 +107,21 @@ var cards = [
     {
         "id": 15,
         "heading": "Stylized Tree Shader",
-        "description": "a Stylized maple tree shader made using Unity's shader graph.",
+        "description": "A Stylized maple tree shader made using Unity's shader graph.",
         "thumbnail": "thumbnails/TreeShader_Thumbnail.png",
         "subpage": "subpages/csharp_treeShader.html"
     },
     {
+        "id": 16,
+        "heading": "Cycling Portal",
+        "description": "Java backend for managing riders and their points. ECM1410 Coursework project",
+        "thumbnail": "thumbnails/TourDeFrance_Logo.png",
+        "subpage": "subpages/java_cyclingPortal.html"
+    },
+    {
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10, 11, 12],
-        "csharp": [13, 14, 15]
+        "csharp": [13, 14, 15],
+        "java": [16]
     }
 ]
