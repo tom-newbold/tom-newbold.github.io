@@ -1,7 +1,6 @@
 var row = 0;
 var rowsPerFrame = 4;
 
-var subMode = false;
 var subdivisions = 30;
 var offset = 1;
 var widthOffset;
@@ -11,84 +10,47 @@ var noiseX;
 var noiseY;
 var noiseScale = 0.02;
 
-var grayscale = false;
 var toDraw = true;
 
-var subdivSlider;
-var noiseScaleSlider;
-var genButton;
-
 function setup() {
-	createCanvas(800,800);
+	var canvas = createCanvas(800,800);
+	canvas.parent('pixel-map');
 	background(0);
-	if(subMode){
-		widthOffset = width/subdivisions;
-		heightOffset = height/subdivisions;
-	} else {
-		widthOffset = offset;
-		heightOffset = offset;
-	}
-
-	createP("Pixel Size");
-	offsetSlider = createSlider(1,min(width,height)/subdivisions,1,1);
-	offsetSlider.changed(offsetCallback);
-
-	createP("Noise Scale");
-	noiseScaleSlider = createSlider(0.001,0.1,0.02,0.001);
-	noiseScaleSlider.changed(noiseScaleCallback);
-
-	genButton = createButton("Generate");
-	genButton.mousePressed(regenNoise);
-
+	widthOffset = offset;
+	heightOffset = offset;
 	regenNoise();
 }
 
 function draw() {
 	if(toDraw){
-		//print("Drawing...")
 		for(i = 0; i < rowsPerFrame; i++){
 			drawRow()
 			row += heightOffset;
 			if(row>height){
 				print("Done!");
 				toDraw = false;
-				break
+				break;
 			}
 		}
 	}
-	/*
-	if(toDraw){
-		print("Drawing...")
-		drawGrid();
-		print("Done!");
-		toDraw = false;
-	}
-	*/
 }
 
 function drawRow(){
 	for(x = 0; x < width; x += widthOffset){
-		if(grayscale){
-			grayscaleGrid(x,row);
-		} else {
-			pixelGrid(x,row);
-		}
+		pixelGrid(x,row);
 	}
 }
 
 function drawGrid(){
 	for(x = 0; x < width; x += widthOffset){
 		for(y = 0; y < height; y += heightOffset){
-			if(grayscale){
-				grayscaleGrid(x,y);
-			} else {
-				pixelGrid(x,y);
-			}
+			pixelGrid(x,y);
 		}
 	}
 }
 
 function heightMapColour(val){
+	// colour palette
 	if(val >= 0 & val <= 0.4){
 		//dark blue
 		stroke(0, 62, 178);
@@ -97,27 +59,27 @@ function heightMapColour(val){
 		//light blue
 		stroke(9, 82, 198);
 		fill(9, 82, 198);
-	}	else if(val > 0.45 & val <= 0.5){
+	}	else if(val > 0.45 & val <= 0.48){
 		//sand
 		stroke(194, 178, 129);
 		fill(194, 178, 129);
-	}	else if(val > 0.5 & val <= 0.6){
+	}	else if(val > 0.48 & val <= 0.55){
 		//dark grass
 		stroke(92, 128, 51);
 		fill(92, 128, 51);
-	} else if(val > 0.6 & val <= 0.7){
+	} else if(val > 0.55 & val <= 0.65){
 		//light grass
 		stroke(120, 157, 80);
 		fill(120, 157, 80);
-	} else if(val > 0.7 & val <= 0.75){
+	} else if(val > 0.65 & val <= 0.7){
 		//dark stone
 		stroke(140, 142, 123);
 		fill(140, 142, 123);
-	} else if(val > 0.75 & val <= 0.8){
+	} else if(val > 0.7 & val <= 0.75){
 		//light stone
 		stroke(160, 162, 143);
 		fill(160, 162, 143);
-	} else if(val > 0.8 & val <= 1){
+	} else if(val > 0.75 & val <= 1){
 		//snow
 		stroke(235, 235, 235);
 		fill(235, 235, 235);
@@ -130,20 +92,18 @@ function heightMapColour(val){
 function pixelGrid(x,y){
 	posX = x*noiseScale + noiseX;
 	posY = y*noiseScale + noiseY;
-	pixelHeight = noise(posX,posY);
-	//print(pixelHeight);
+	// octaves
+	pixelHeight = ( 2*warp(posX,posY,10) + 3*warp(posX/2,posY/2,5) + 4*warp(posX/10,posY/10,1) )/9;
 	heightMapColour(pixelHeight);
 	rect(x,y,widthOffset,heightOffset);
 }
 
-function grayscaleGrid(x,y){
-	posX = x*noiseScale + noiseX;
-	posY = y*noiseScale + noiseY;
-	pixelHeight = noise(posX,posY);
-	//print(pixelHeight);
-	stroke(pixelHeight*255);
-	fill(pixelHeight*255);
-	rect(x,y,widthOffset,heightOffset);
+function warp(x,y,n) {
+	// domain warping
+	warpAmp = n*noiseScale;
+	newX = x + warpAmp*noise(x+noiseX,y);
+	newY = y + warpAmp*noise(x,y+noiseX);
+	return noise(newX,newY);
 }
 
 function reset(){
@@ -158,33 +118,7 @@ function regenNoise(){
 	reset();
 }
 
-function keyPressed(){
-  if(keyCode == ENTER){
-		/*
-		if(!toDraw){
-    	grayscale = !grayscale;
-			toDraw = true;
-			row = 0;
-		}
-		*/
-		grayscale = !grayscale;
-		reset();
-  }
-}
-
-function offsetCallback(){
-	offset = offsetSlider.value();
-	print("Pixel Size:",offset);
-	widthOffset = offset;
-	heightOffset = offset;
-
-	reset();
-}
-
-function noiseScaleCallback(){
-	noiseScale = noiseScaleSlider.value();
-	print("Noise Scale",noiseScale);
-	regenNoise();
-
-	reset();
+function mousePressed() {
+	background(0);
+	regenNoise()
 }
