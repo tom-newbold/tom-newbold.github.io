@@ -91,8 +91,15 @@ var cards = [
         "subpage": "subpages/csharp_fpsDemo.html"
     },
     {
+        "id": 13,
+        "heading": "Stylized Tree Shader",
+        "description": "a Stylized maple tree shader made using Unity's shader graph.",
+        "thumbnail": "thumbnails/TreeShader_Thumbnail.png",
+        "subpage": "subpages/csharp_treeShader.html"
+    },
+    {
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10],
-        "csharp": [11, 12]
+        "csharp": [11, 12, 13]
     }
 ]
