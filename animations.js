@@ -8,15 +8,6 @@ const callback = (entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('card-enter');
             entry.target.classList.add(classes[card_id]);
-            /*
-            if(card_id==0) {
-                entry.target.classList.add('no-delay');
-            } else if(card_id==1) {
-                entry.target.classList.add('one-delay');
-            } else if(card_id==2) {
-                entry.target.classList.add('two-delay');
-            }
-            */
             return;
         }
         entry.target.classList.remove('card-enter');
