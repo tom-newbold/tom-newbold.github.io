@@ -86,33 +86,26 @@ var cards = [
     {
         "id": 12,
         "heading": "Time",
-        "description": "A collection of creative coding exercises.",
-        "thumbnail": "thumbnails/Squares_Thumbnail.png",
-        "subpage": "subpages/javascript_generativeArt.html"
+        "description": "A digital clock visualisation.",
+        "thumbnail": "thumbnails/Time_Thumbnail.png",
+        "subpage": "subpages/javascript_time.html"
     },
     {
         "id": 13,
-        "heading": "Raycast",
-        "description": "A collection of creative coding exercises.",
-        "thumbnail": "thumbnails/Squares_Thumbnail.png",
-        "subpage": "subpages/javascript_generativeArt.html"
-    },
-    {
-        "id": 14,
         "heading": "Chilly Quest",
         "description": "A short platformer written in Unity.",
         "thumbnail": "thumbnails/ChillyQuest_Thumbnail.png",
         "subpage": "subpages/csharp_chillyQuest.html"
     },
     {
-        "id": 15,
+        "id": 14,
         "heading": "FPS Demo",
         "description": "First Person demo with physics objects and post-procesing, in Unity.",
         "thumbnail": "thumbnails/FPS_Demo_Thumbnail.png",
         "subpage": "subpages/csharp_fpsDemo.html"
     },
     {
-        "id": 16,
+        "id": 15,
         "heading": "Stylized Tree Shader",
         "description": "a Stylized maple tree shader made using Unity's shader graph.",
         "thumbnail": "thumbnails/TreeShader_Thumbnail.png",
@@ -120,7 +113,7 @@ var cards = [
     },
     {
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
-        "javascript": [8, 9, 10, 11],
-        "csharp": [14, 15, 16]
+        "javascript": [8, 9, 10, 11, 12],
+        "csharp": [13, 14, 15]
     }
 ]
