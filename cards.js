@@ -80,7 +80,7 @@ var cards = [
         "id": 11,
         "heading": "Chilly Quest",
         "description": "A short platformer written in Unity.",
-        "thumbnail": "thumbnails/TextAdventure_Thumbnail.ico",
+        "thumbnail": "thumbnails/ChillyQuest_Thumbnail.png",
         "subpage": "subpages/csharp_chillyQuest.html"
     },
     {
