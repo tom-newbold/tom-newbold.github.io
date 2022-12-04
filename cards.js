@@ -2,7 +2,7 @@ var cards = [
     {
         "id": 0,
         "heading": "Maze Generator",
-        "description": "Maze generation application written in Python. GCSE NEA project.",
+        "description": "Maze generation application written in Python. A-Level NEA project.",
         "thumbnail": "thumbnails/MazeGenerator_Thumbnail.png",
         "subpage": "subpages/python_mazeGenerator.html"
     },
