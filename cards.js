@@ -113,6 +113,13 @@ var cards = [
     },
     {
         "id": 16,
+        "heading": "Card Game",
+        "description": "Threaded Java simulation for a multiplayer card game. ECM2414 Coursework project",
+        "thumbnail": "thumbnails/ace.png",
+        "subpage": "subpages/java_cardGame.html"
+    },
+    {
+        "id": 17,
         "heading": "Cycling Portal",
         "description": "Java backend for managing riders and their points. ECM1410 Coursework project",
         "thumbnail": "thumbnails/TourDeFrance_Logo.png",
@@ -122,6 +129,6 @@ var cards = [
         "python": [0, 1, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10, 11, 12],
         "csharp": [13, 14, 15],
-        "java": [16]
+        "java": [16, 17]
     }
 ]
