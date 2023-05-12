@@ -130,7 +130,7 @@ var cards = [
         "heading": "BeGreen",
         "description": "Django-powered sustainable social media app. ECM2324 Coursework project",
         "thumbnail": "thumbnails/favicon.ico",
-        "subpage": "subpages/Python_beGreen.html"
+        "subpage": "subpages/python_beGreen.html"
     },
     {
         "python": [0, 1, 18, 2, 3, 4, 5, 6, 7],
