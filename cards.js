@@ -126,7 +126,14 @@ var cards = [
         "subpage": "subpages/java_cyclingPortal.html"
     },
     {
-        "python": [0, 1, 2, 3, 4, 5, 6, 7],
+        "id": 18,
+        "heading": "BeGreen",
+        "description": "Django-powered sustainable social media app. ECM2324 Coursework project",
+        "thumbnail": "thumbnails/favicon.ico",
+        "subpage": "subpages/Python_beGreen.html"
+    },
+    {
+        "python": [0, 1, 18, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10, 11, 12],
         "csharp": [13, 14, 15],
         "java": [16, 17]
