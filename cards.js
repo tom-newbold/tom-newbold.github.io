@@ -135,7 +135,7 @@ var cards = [
     {
         "id": 19,
         "heading": "Spotify API",
-        "description": "Flask-powered web-appa for displaying album/playlist art. Implemented on a Pi Zero",
+        "description": "Flask-powered web-app for displaying album/playlist art. Implemented on a Pi Zero",
         "thumbnail": "thumbnails/Spotify_logo.png",
         "subpage": "subpages/python_spotifyAPI.html"
     },
