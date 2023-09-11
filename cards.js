@@ -133,7 +133,14 @@ var cards = [
         "subpage": "subpages/python_beGreen.html"
     },
     {
-        "python": [0, 1, 18, 2, 3, 4, 5, 6, 7],
+        "id": 19,
+        "heading": "Spotify API",
+        "description": "Flask-powered web-appa for displaying album/playlist art. Implemented on a Pi Zero",
+        "thumbnail": "thumbnails/Spotify_logo.png",
+        "subpage": "subpages/python_spotifyAPI.html"
+    },
+    {
+        "python": [18, 19, 0, 1, 2, 3, 4, 5, 6, 7],
         "javascript": [8, 9, 10, 11, 12],
         "csharp": [13, 14, 15],
         "java": [16, 17]
