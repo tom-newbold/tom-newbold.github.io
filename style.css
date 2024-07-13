@@ -103,6 +103,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    row-gap: 15px;
 }
 .container {
     display: inline-block;
@@ -173,11 +174,11 @@ a {
 /* subpage margin and content classes */
 .page-wrapper {
     width: 100%;
-    padding: 25px;
-    padding-top: 20px;
+    padding-top: 70px;
+    position: absolute;
+    display: flex;
 }
 .page {
-    display: inline-block;
     text-align: center;
     width: 100%;
     padding: 0px;
@@ -188,6 +189,7 @@ a {
     text-align: justify;
     padding: 10px;
     padding-left: 30px;
+    position: relative;
 }
 .page.margin .image {
     width: 100%;
@@ -196,6 +198,7 @@ a {
 }
 .page.content {
     width: 65%;
+    position: relative;
 }
 .page.content .row {
     display: inline-block;
