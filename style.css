@@ -6,12 +6,18 @@
     font-style: normal;
 }
 
+:root {
+    --glow-white: #f0f6f0;
+    --glow-black: #222323;
+    --null-black: #16161d;
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: black;
-    color: white;
+    background-color: var(--glow-black);
+    color: var(--glow-white);
     font-family: 'RobotoCondensedItalic';
 }
 h1 {
@@ -36,23 +42,33 @@ a {
     color: inherit;
 }
 
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 /* links bar */
 .links-wrapper {
     width: 100%;
     padding-top: 15px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 .links {
-    display: inline-block;
     text-align: center;
     width: 100%;
     padding: 0px;
+    position: relative;
 }
 .links.link {
     width: 6%;
 }
 .links.space {
     width: 20%;
-    position: relative;
+    position: absolute;
     top: 50%;
     transform: translateY(-25%);
 }
@@ -61,7 +77,7 @@ a {
 .hover-underline-animation {
   display: inline-block;
   position: relative;
-  color: white;
+  color: var(--glow-white);
 }
 .hover-underline-animation:after {
   content: '';
@@ -71,7 +87,7 @@ a {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: white;
+  background-color: var(--glow-white);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -83,6 +99,10 @@ a {
 /* card container */
 .container-wrapper {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .container {
     display: inline-block;
@@ -103,8 +123,8 @@ a {
     height: 80px;
     padding: 15px;
     border-radius: 20px;
-    background-color: white;
-    color: black;
+    background-color: var(--glow-white);
+    color: var(--glow-black);
     font-size: small;
     opacity: 0;
     transform: translate(0px, 50px);
@@ -183,3 +203,25 @@ a {
     padding-bottom: 20px;
     width: 85%;
 }
+
+.shift {
+    position: relative;
+    top: 100%;
+}
+
+.name {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 80;
+    top: 45%;
+    transition: 0.5s;
+    color: var(--glow-white);
+}
+
+/*
+.name:hover {
+    color: skyblue;
+    transition: 0.5s;
+}
+*/

@@ -36,5 +36,6 @@ function draw() {
 	noStroke();
 	fill(255,0,0,200);
 	textFont(fontThinItalic);
-	text('P R O G R A M M E R', w/2, 20 + h/2);
+	//text('P R O G R A M M E R', w/2, 20 + h/2);
+	text('SOFTWARE ENGINEER', w/2, 20 + h/2);
 }

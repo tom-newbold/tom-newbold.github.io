@@ -1,12 +1,13 @@
 <html>
 
 <head>
-    <title>Thomas Newbold | Programmer | Projects</title>
+    <title>Thomas Newbold | Software Engineer | Projects</title>
 
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.dom.js"></script>
-    <script src="name.js"></script>
-    <script src="vehicles.js"></script>
+    <!--script src="name.js"></script>
+    <script src="vehicles.js"></script-->
+    
 
     <link rel="stylesheet" href="style.css">
 
@@ -14,75 +15,77 @@
 </head>
 
 <body>
-    <div class="links-wrapper" id="links">
-        <!-- link bar at top -->
-        <div class="links space"></div>
-        <div class="links link">
-            <a href="https://www.linkedin.com/in/thomasnewbold-/">
-                <img src="thumbnails/LinkedIn_Logo.png" width="50" height="50"></a>
+    <div id="container">
+        <div id="p5-canvas" style="width: 100%; position: absolute;">
+            <!-- p5 sketch: name -->
+            <script src="flower_background_anim.js"></script>
         </div>
-        <div class="links space"></div>
-        <div class="links link">
-            <a href="https://github.com/tom-newbold/">
-                <img src="thumbnails/GitHub_Logo.png" width="50" height="50"></a>
-        </div>
-        <div class="links space"></div>
-        <div class="links link">
-            <a href="https://brownseededbread.itch.io/">
-                <img src="thumbnails/ItchIo_Logo.png" width="50" height="50"></a>
-        </div>
-        <div class="links space"></div>
-    </div>
-    <div id="p5-canvas" style="width: 100%;">
-        <!-- p5 sketch: name -->
-    </div>
 
-    <div style="padding:100px 50px 0px;">
-        <!-- python project cards -->
-        <div style="height: 40px; padding-bottom: 10px;">
-            <h2 style="float: left;">Python:</h2>
-            <a href="subpages/python.html">
-                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
-            </a>
+        <div class="links-wrapper" id="links" class="shift">
+            <!-- link bar at top -->
+            <div class="links link">
+                <a href="https://www.linkedin.com/in/thomasnewbold-/">
+                    <img src="thumbnails/LinkedIn_Logo_new.png" width="50" height="50"></a>
+            </div>
+            <div class="links link">
+                <a href="https://github.com/tom-newbold/">
+                    <img src="thumbnails/GitHub_Logo_new.png" width="50" height="50"></a>
+            </div>
+            <div class="links link">
+                <a href="https://brownseededbread.itch.io/">
+                    <img src="thumbnails/ItchIo_Logo_new.png" width="50" height="50"></a>
+            </div>
         </div>
-        <div class="container-wrapper card-wrapper" id="Python"></div>
-    </div>
-
-    <div style="padding:50px 50px 0px;">
-        <!-- javascript project cards-->
-        <div style="height: 40px; padding-bottom: 10px;">
-            <h2 style="float: left;">JavaScript (using p5.js libraries):</h2>
-            <a href="subpages/javascript.html">
-                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
-            </a>
-        </div>
-        <div class="container-wrapper card-wrapper" id="Javascript"></div>
-    </div>
-
-    <div style="padding:50px 50px 0px;">
-        <!-- c sharp project cards-->
-        <div style="height: 40px; padding-bottom: 10px;">
-            <h2 style="float: left;">C# (in Unity):</h2>
-            <a href="subpages/csharp.html">
-                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
-            </a>
-        </div>
-        <div class="container-wrapper card-wrapper" id="C-Sharp"></div>
-    </div>
-
-    <div style="padding:50px 50px 0px;">
-        <!-- java project cards-->
-        <div style="height: 40px; padding-bottom: 10px;">
-            <h2 style="float: left;">Java:</h2>
-            <a href="subpages/java.html">
-                <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
-            </a>
-        </div>
-        <div class="container-wrapper card-wrapper" id="Java"></div>
-    </div>
 
 
-    <div style="padding-bottom: 50px;"></div>
+        <div style="padding:100px 50px 0px;" class="shift">
+            <!-- python project cards -->
+            <div style="height: 40px; padding-bottom: 10px;">
+                <h2 style="float: left;">Python:</h2>
+                <a href="subpages/python.html">
+                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+                </a>
+            </div>
+            <div class="container-wrapper card-wrapper" id="Python"></div>
+        </div>
+
+        <div style="padding:50px 50px 0px;" class="shift">
+            <!-- javascript project cards-->
+            <div style="height: 40px; padding-bottom: 10px;">
+                <h2 style="float: left;">JavaScript (using p5.js libraries):</h2>
+                <a href="subpages/javascript.html">
+                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+                </a>
+            </div>
+            <div class="container-wrapper card-wrapper" id="Javascript"></div>
+        </div>
+
+        <div style="padding:50px 50px 0px;" class="shift">
+            <!-- c sharp project cards-->
+            <div style="height: 40px; padding-bottom: 10px;">
+                <h2 style="float: left;">C# (in Unity):</h2>
+                <a href="subpages/csharp.html">
+                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+                </a>
+            </div>
+            <div class="container-wrapper card-wrapper" id="C-Sharp"></div>
+        </div>
+
+        <div style="padding:50px 50px 0px;" class="shift">
+            <!-- java project cards-->
+            <div style="height: 40px; padding-bottom: 10px;">
+                <h2 style="float: left;">Java:</h2>
+                <a href="subpages/java.html">
+                    <h3 style="float: right;" class="hover-underline-animation">See All &gt;</h3>
+                </a>
+            </div>
+            <div class="container-wrapper card-wrapper" id="Java"></div>
+        </div>
+
+
+        <h1 class="name">Thomas Newbold</h1>
+    </div>
+    <!--div style="padding-bottom: 50px;"></div-->
 
     <script>
         // Loads project titles/descriptions/thumbnails into cards
@@ -107,12 +110,17 @@
                         </div>
                     </div>
                 </div>`
-                if (id != 2) {
+                /*if (id != 2) {
                     format = format + '<div class="container space"></div>';
-                }
+                }*/
                 html = html + format;
                 i++;
             });
+            if (array.length < 3) {
+                for(var i=3; i>array.length; i--) {
+                    html = html + `<div class="container content card" style="opacity: 0;"></div>`;
+                }
+            }
             out.innerHTML = html;
         }
         loadCards("Python", cards[cards.length - 1].python);
