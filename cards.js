@@ -140,8 +140,15 @@ var cards = [
         "subpage": "subpages/python_spotifyAPI.html"
     },
     {
+        "id": 20,
+        "heading": "Constellations",
+        "description": "Simple dynamic webpage background written using p5.js",
+        "thumbnail": "thumbnails/constellation_thumbnail.png",
+        "subpage": "subpages/javascript_constellations.html"
+    },
+    {
         "python": [18, 19, 0, 1, 2, 3, 4, 5, 6, 7],
-        "javascript": [8, 9, 10, 11, 12],
+        "javascript": [20, 9, 10, 8, 11, 12],
         "csharp": [13, 14, 15],
         "java": [16, 17]
     }
