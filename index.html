@@ -487,6 +487,86 @@
   </footer>
 
   <script src="letterboxd_feed.js" defer></script>
+  <script>
+    const categoryPalettes = {
+      tech: [
+        { background: '#D3E4F2', text: '#1D3851' },
+        { background: '#D9E8E9', text: '#1B4E56' },
+        { background: '#D8EBF0', text: '#145162' }
+      ],
+      interest: [
+        { background: '#E7F2E9', text: '#2F5A40' },
+        { background: '#D8ECE0', text: '#2A5B49' },
+        { background: '#E9F0DF', text: '#3B5C3F' }
+      ],
+      gold: [
+        { background: '#F4E5DA', text: '#6A4624' },
+        { background: '#FAE9C8', text: '#7A5A1E' }
+      ],
+      year: [
+        { background: '#EDE5F4', text: '#4D3F7A' },
+        { background: '#E8E0F6', text: '#443B72' }
+      ],
+      event: [
+        { background: '#F9D8D6', text: '#8B2A2C' },
+        { background: '#F6D2D1', text: '#8C2C2E' }
+      ],
+      misc: [
+        { background: '#F8EBD9', text: '#74513E' },
+        { background: '#F3E9DD', text: '#6A4B32' }
+      ]
+    };
+
+    const getRandomIndex = (choices) => Math.floor(Math.random() * choices.length);
+
+    const categoryDefinitions = {
+      gold: ['tech for good'],
+      event: ['ctf', 'hackathon'],
+      tech: [
+        'docker', 'node.js', 'node', 'react', 'java', 'python', 'qiskit',
+        'javascript', 'js', 'p5.js', 'flask', 'django', 'spotify api',
+        'websockets', 'c#', 'unity', 'gdscript', 'godot', 'git', 'data science',
+        'urban data science'
+      ],
+      interest: [
+        'artificial intelligence', 'quantum computing', 'quantum', 'sustainable energy',
+        'motorsport', 'generative art', 'music', 'photography', 'game dev'
+      ],
+      misc: ['devsecops', 'team', 'solo', 'research', 'poster', 'report']
+    };
+
+    const normalize = (text) => text.trim().toLowerCase();
+
+    const detectCategory = (text) => {
+      const value = normalize(text);
+      if (/^\d{4}$/.test(value)) return 'year';
+      if (categoryDefinitions.gold.some((keyword) => value.includes(keyword))) return 'gold';
+      if (categoryDefinitions.event.some((keyword) => value.includes(keyword))) return 'event';
+      if (categoryDefinitions.tech.some((keyword) => value.includes(keyword))) return 'tech';
+      if (categoryDefinitions.interest.some((keyword) => value.includes(keyword))) return 'interest';
+      if (categoryDefinitions.misc.some((keyword) => value.includes(keyword))) return 'misc';
+      return 'misc';
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoryToneMap = {};
+      Object.keys(categoryPalettes).forEach((category) => {
+        const palette = categoryPalettes[category];
+        categoryToneMap[category] = palette[getRandomIndex(palette)];
+      });
+
+      const tags = document.querySelectorAll('.tag');
+      tags.forEach((tag) => {
+        const key = normalize(tag.textContent);
+        if (!key) return;
+
+        const category = detectCategory(key);
+        const colour = categoryToneMap[category] || categoryToneMap.misc;
+        tag.style.backgroundColor = colour.background;
+        tag.style.color = colour.text;
+      });
+    });
+  </script>
 
 </body>
 </html>

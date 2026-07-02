@@ -150,6 +150,7 @@ a { color: inherit; }
     border-radius: 4px;
     background: var(--tag-bg);
     color: var(--tag-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .tag--sand {
