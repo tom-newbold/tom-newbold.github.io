@@ -1,40 +1,33 @@
 document.querySelectorAll('.project-card--flip').forEach((card) => {
     const flips = card.querySelectorAll('.project-card__flip');
     flips.forEach((button) => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        card.classList.toggle('is-flipped');
-    });
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            card.classList.toggle('is-flipped');
+        });
     });
 });
 
 document.querySelectorAll('.project-card').forEach((card) => {
     const overlay = card.querySelector('.project-card__overlay');
     if (overlay) {
-    card.addEventListener('click', (event) => {
-        if (event.target.closest('.project-card__flip, .project-card__arrow')) {
-        return;
-        }
-        overlay.click();
-    });
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('.project-card__flip, .project-card__arrow')) {
+                return;
+            }
+            overlay.click();
+        });
     }
 });
 
 /*
     Letterboxd live feed
     ─────────────────────────────────────────────────────────────
-    Fetches the last 4 diary entries from the public RSS feed at
-    https://letterboxd.com/tomnewbold/rss/ via allorigins.win,
-    a free CORS proxy that returns the raw XML as a JSON string.
+    Fetches the last 4 diary entries from the public Letterboxd RSS feed
+    through rss2json, which provides a browser-accessible JSON response.
 
-    Letterboxd's RSS includes dedicated namespace elements:
-    <letterboxd:filmTitle>   film title
-    <letterboxd:filmYear>    release year
-    <letterboxd:memberRating> rating 0–5 (float, e.g. 4.5)
-    The film poster is an <img> inside the CDATA description block.
-
-    If the fetch fails (proxy down, network issue) the section shows
+    If the fetch fails (service down, network issue) the section shows
     a fallback link to the Letterboxd profile instead.
 */
 (async function loadLetterboxd() {
@@ -42,123 +35,98 @@ document.querySelectorAll('.project-card').forEach((card) => {
     if (!container) return;
 
     const USERNAME = 'tomnewbold';
-    const COUNT    = 4;
-    const RSS_URL  = `https://letterboxd.com/${USERNAME}/rss/`;
-
-    /*
-    corsproxy.io returns the raw feed as text — no JSON wrapper — which
-    means the XML goes straight into DOMParser without any encoding issues.
-    allorigins.win (previous proxy) wraps in JSON and can mangle namespaces.
-    */
-    const PROXY = `https://corsproxy.io/?${encodeURIComponent(RSS_URL)}`;
+    const COUNT = 4;
+    const RSS_URL = `https://letterboxd.com/${USERNAME}/rss/`;
+    const FEED_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
     try {
-    const resp = await fetch(PROXY);
-    if (!resp.ok) throw new Error(`Proxy responded ${resp.status}`);
+        const resp = await fetch(FEED_URL);
+        if (!resp.ok) throw new Error(`RSS service responded ${resp.status}`);
 
-    const xmlText = await resp.text();
-    const xml     = new DOMParser().parseFromString(xmlText, 'text/xml');
+        const feed = await resp.json();
+        if (feed.status !== 'ok') throw new Error(`RSS service returned ${feed.status}`);
 
-    /* DOMParser never throws — on failure it returns a <parsererror> document */
-    const parseErr = xml.querySelector('parsererror');
-    if (parseErr) throw new Error(`XML parse failed: ${parseErr.textContent.slice(0, 80)}`);
+        const items = Array.isArray(feed.items) ? feed.items.slice(0, COUNT) : [];
+        if (!items.length) throw new Error('RSS returned no items');
 
-    const items = [...xml.querySelectorAll('item')].slice(0, COUNT);
-    if (!items.length) throw new Error('RSS returned no items');
+        container.innerHTML = items.map(item => {
+            const title = item.title.trim();
+            const titleMatch = /^(.*?),\s*(\d{4})(?:\s*-\s*(.*))?$/.exec(title);
+            const filmTitle = titleMatch?.[1] ?? parseTitleFallback(title);
+            const filmYear = titleMatch?.[2] ?? '';
+            const ratingText = titleMatch?.[3] ?? '';
+            const ratingRaw = [...ratingText.matchAll(/★|½/g)]
+                .reduce((rating, [star]) => rating + (star === '½' ? 0.5 : 1), 0);
 
-    container.innerHTML = items.map(item => {
-        /* ── Film metadata ── */
-        const filmTitle =
-        item.getElementsByTagName('letterboxd:filmTitle')[0]?.textContent?.trim()
-        ?? parseTitleFallback(item.querySelector('title')?.textContent ?? '');
+            const description = document.createElement('div');
+            description.innerHTML = item.description ?? '';
+            const posterSrc = description.querySelector('img')?.getAttribute('src') ?? '';
+            const review = description.querySelectorAll('p')[1];
+            review?.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+            const reviewLines = review?.textContent
+                .split('\n')
+                .map(line => line.trim())
+                .filter(Boolean) ?? [];
+            const filmLink = item.link || `https://letterboxd.com/${USERNAME}/`;
 
-        const filmYear =
-        item.getElementsByTagName('letterboxd:filmYear')[0]?.textContent?.trim() ?? '';
+            const posterHtml = posterSrc
+                ? `<img src="${escapeHtml(posterSrc)}" alt="${escapeHtml(filmTitle)}" loading="lazy">`
+                : '🎥';
+            const ratingHtml = ratingRaw
+                ? `<span class="lb-film__rating">${starsFromRating(ratingRaw)}</span>`
+                : '';
+            const metaParts = [filmYear, ratingHtml].filter(Boolean).join(' · ');
+            const autogeneratedReview = review?.textContent?.trim().startsWith('Watched on ');
+            const reviewHtml = review && !autogeneratedReview && reviewLines.length
+                ? reviewLines.map(line => `<p class="lb-film__review">${escapeHtml(line)}</p>`).join('')
+                : '';
 
-        const ratingRaw = parseFloat(
-        item.getElementsByTagName('letterboxd:memberRating')[0]?.textContent ?? '0'
-        );
-
-        /* ── Poster: Letterboxd puts <img> inside the CDATA description ── */
-        const descCdata = item.querySelector('description')?.textContent ?? '';
-        const tmp = document.createElement('div');
-        tmp.innerHTML = descCdata;
-        const posterSrc = tmp.querySelector('img')?.src ?? '';
-        const review = tmp.querySelectorAll('p')[1] ?? '';
-
-        const reviewLines = review?.innerHTML
-        ? review.innerHTML
-            .split(/<br\s*\/?>/i)
-            .map(part => part.replace(/<[^>]+>/g, '').trim())
-            .filter(Boolean)
-        : [];
-
-        /* ── Entry link ──
-            In RSS, <link> is a sibling text node and notoriously awkward
-            to read via querySelector in XML mode. <guid> holds the same URL
-            and is a normal element, so use it as the primary source.        */
-        const filmLink =
-        //item.querySelector('guid')?.textContent?.trim()
-        item.querySelector('link')?.textContent?.trim()
-        ?? `https://letterboxd.com/${USERNAME}/`;
-
-        /* ── Build poster HTML ── */
-        const posterHtml = posterSrc
-        ? `<img src="${posterSrc}" alt="${filmTitle}" loading="lazy">`
-        : '🎥';
-
-        /* ── Build rating HTML ── */
-        const ratingHtml = ratingRaw
-        ? `<span class="lb-film__rating">${starsFromRating(ratingRaw)}</span>`
-        : '';
-
-        const metaParts = [filmYear, ratingHtml].filter(Boolean).join(' · ');
-
-        //console.log(item.querySelectorAll('letterboxd\\3AwatchedDate'))
-        //const watchDate = item.querySelector('letterboxd\\3AwatchedDate')?.textContent?.trim() ?? ''; // e.g. "2026-06-26"
-        const autogeneratedReview = review.textContent?.trim().startsWith('Watched on '); // + new Date(watchDate).toLocaleDateString("en-GB", { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }); // e.g. "Watched on Thursday June 25, 2026."
-        const reviewHtml = review && !autogeneratedReview && reviewLines.length
-        ? reviewLines.map(line => `<p class="lb-film__review">${line}</p>`).join('')
-        : '';
-
-        return `
-        <a class="lb-film"
-            href="${filmLink}"
-            target="_blank"
-            rel="noopener"
-            title="${filmTitle}">
-            <div class="lb-film__poster">${posterHtml}</div>
-            <div class="lb-film__info">
-            <div class="lb-film__title">${filmTitle}</div>
-            <div class="lb-film__meta">${metaParts}</div>
-            <div class="lb-film__meta">${reviewHtml}</div>
-            </div>
-        </a>`;
-    }).join('');
-
+            return `
+                <a class="lb-film"
+                    href="${escapeHtml(filmLink)}"
+                    target="_blank"
+                    rel="noopener"
+                    title="${escapeHtml(filmTitle)}">
+                    <div class="lb-film__poster">${posterHtml}</div>
+                    <div class="lb-film__info">
+                        <div class="lb-film__title">${escapeHtml(filmTitle)}</div>
+                        <div class="lb-film__meta">${metaParts}</div>
+                        <div class="lb-film__meta">${reviewHtml}</div>
+                    </div>
+                </a>`;
+        }).join('');
     } catch (err) {
-    console.warn('Letterboxd RSS fetch failed:', err);
-    container.innerHTML = `
-        <div class="lb-error">
-        Couldn't load films right now.
-        <a href="https://letterboxd.com/${USERNAME}/"
-            target="_blank" rel="noopener">View on Letterboxd →</a>
-        </div>`;
+        console.warn('Letterboxd RSS fetch failed:', err);
+        container.innerHTML = `
+            <div class="lb-error">
+                Couldn't load films right now.
+                <a href="https://letterboxd.com/${USERNAME}/"
+                    target="_blank" rel="noopener">View on Letterboxd →</a>
+            </div>`;
     }
 }());
 
 /* "Tom rated Interstellar ★★★★½" → "Interstellar" */
 function parseTitleFallback(s) {
     return s
-    .replace(/^.+? (?:watched|rated|reviewed) /i, '')
-    .replace(/ [\u2605\u00BD\u2729].*$/, '')
-    .trim();
+        .replace(/^.+? (?:watched|rated|reviewed) /i, '')
+        .replace(/ [\u2605\u00BD\u2729].*$/, '')
+        .trim();
 }
 
-/* 4.5 → "★★★★½✩"   3.0 → "★★★✩✩" */
+/* 4.5 → "★★★★½" */
 function starsFromRating(n) {
-    const full  = Math.floor(n);
-    const half  = (n % 1) >= 0.5;
-    //const empty = 5 - full - (half ? 1 : 0);
-    return '★'.repeat(full) + (half ? '½' : '');// + '✩'.repeat(empty);
+    const full = Math.floor(n);
+    const half = (n % 1) >= 0.5;
+    return '★'.repeat(full) + (half ? '½' : '');
+}
+
+function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
 }
