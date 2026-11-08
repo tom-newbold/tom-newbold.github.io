@@ -6,6 +6,7 @@
     --sand-soft:  #F8EDD8;
     --navy:       #1F3048;
     --teal:       #2E6C72;
+    --opinion-accent: var(--teal);
     --teal-mid:   #5A9EA5;
     --teal-soft:  #E5F2F3;
 
@@ -597,7 +598,7 @@ a { color: inherit; }
     font-weight: var(--fw-mono-bold);
     font-size: 1rem;
     line-height: 1.4;
-    color: var(--teal);
+    color: var(--opinion-accent);
     margin-bottom: 1.1rem;
 }
 

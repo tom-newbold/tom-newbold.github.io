@@ -144,6 +144,52 @@
     );
   }
 
+  function getLuminance(rgb) {
+    const linear = rgb.map((channel) => {
+      const value = channel / 255;
+      return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  }
+
+  function getMinimumContrast(foreground, backgrounds) {
+    const foregroundLuminance = getLuminance(foreground);
+    return Math.min(...backgrounds.map((background) => {
+      const backgroundLuminance = getLuminance(background);
+      return (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) /
+        (Math.min(foregroundLuminance, backgroundLuminance) + 0.05);
+    }));
+  }
+
+  function ensureTextContrast(foreground, backgrounds) {
+    const minimumContrast = 4.5;
+    if (getMinimumContrast(foreground, backgrounds) >= minimumContrast) return foreground;
+
+    const black = [0, 0, 0];
+    const white = [255, 255, 255];
+    const target = getMinimumContrast(black, backgrounds) >= getMinimumContrast(white, backgrounds)
+      ? black
+      : white;
+    let low = 0;
+    let high = 1;
+
+    for (let iteration = 0; iteration < 8; iteration += 1) {
+      const amount = (low + high) / 2;
+      const candidate = foreground.map((channel, index) =>
+        Math.round(channel + (target[index] - channel) * amount)
+      );
+      if (getMinimumContrast(candidate, backgrounds) >= minimumContrast) {
+        high = amount;
+      } else {
+        low = amount;
+      }
+    }
+
+    return foreground.map((channel, index) =>
+      Math.round(channel + (target[index] - channel) * high)
+    );
+  }
+
   function calculatePalette(time) {
     const dayOfYear = Math.floor(
       (Date.UTC(time.year, time.month - 1, time.day) - Date.UTC(time.year, 0, 0)) /
@@ -163,10 +209,12 @@
     ];
     let start;
     let end;
+    let interpolationTime = hoursSinceSunrise;
 
     if (hoursSinceSunrise < anchors[0].at) {
       start = { ...anchors[anchors.length - 1], at: anchors[anchors.length - 1].at - 24 };
       end = anchors[0];
+      interpolationTime -= 24;
     } else {
       for (let index = 0; index < anchors.length; index += 1) {
         if (hoursSinceSunrise < anchors[index].at) {
@@ -181,7 +229,7 @@
       }
     }
 
-    const amount = (hoursSinceSunrise - start.at) / (end.at - start.at);
+    const amount = (interpolationTime - start.at) / (end.at - start.at);
     const from = PALETTES[start.palette];
     const to = PALETTES[end.palette];
     const palette = {};
@@ -190,6 +238,10 @@
       .forEach((key) => {
         palette[key] = interpolateColor(from[key], to[key], amount);
       });
+    palette.ink = ensureTextContrast(palette.ink, [palette.bg, palette.surface]);
+    palette.muted = ensureTextContrast(palette.muted, [palette.bg, palette.surface]);
+    palette.strongMuted = ensureTextContrast(palette.strongMuted, [palette.strongBg]);
+    palette.opinionAccent = ensureTextContrast([46, 108, 114], [palette.bg]);
 
     return {
       palette,
@@ -216,6 +268,7 @@
     rootStyle.setProperty('--ink', toCssColor(currentState.palette.ink));
     rootStyle.setProperty('--muted', toCssColor(currentState.palette.muted));
     rootStyle.setProperty('--border', toCssColor(currentState.palette.border));
+    rootStyle.setProperty('--opinion-accent', toCssColor(currentState.palette.opinionAccent));
     rootStyle.setProperty('--strong-bg', toCssColor(currentState.palette.strongBg));
     rootStyle.setProperty('--strong-text', toCssColor(currentState.palette.strongText));
     rootStyle.setProperty('--strong-muted', toCssColor(currentState.palette.strongMuted));
